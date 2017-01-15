@@ -1,0 +1,1 @@
+{"virtualbox":{"/home/vagrant/jzi_blog":{"type":null,"mount_options":[],"guestpath":"/home/vagrant/jzi_blog","hostpath":"D:/PHPEn/Code/jzi_blog","disabled":false,"__vagrantfile":true},"/vagrant":{"guestpath":"/vagrant","hostpath":"D:/PHPEn/Code/jzi_blog","disabled":false,"__vagrantfile":true}}}
