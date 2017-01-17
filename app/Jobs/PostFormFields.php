@@ -7,7 +7,7 @@ use App\Tag;
 use Carbon\Carbon;
 use Illuminate\Contracts\Bus\SelfHandling;
 
-class PostFormFields extends Job implements SelfHandling
+class PostFormFields extends Job //implements SelfHandling
 {
     /**
      * The id (if any) of the Post row
@@ -28,8 +28,8 @@ class PostFormFields extends Job implements SelfHandling
         'content' => '',
         'meta_description' => '',
         'is_draft' => "0",
-        'publish_date' => '',
-        'publish_time' => '',
+        'update_date' => '',
+        'update_time' => '',
         'layout' => 'blog.layouts.post',
         'tags' => [],
     ];
@@ -57,8 +57,8 @@ class PostFormFields extends Job implements SelfHandling
             $fields = $this->fieldsFromModel($this->id, $fields);
         } else {
             $when = Carbon::now()->addHour();
-            $fields['publish_date'] = $when->format('M-j-Y');
-            $fields['publish_time'] = $when->format('g:i A');
+            $fields['update_date'] = $when->format('M-j-Y');
+            $fields['update_time'] = $when->format('g:i A');
         }
 
         foreach ($fields as $fieldName => $fieldValue) {
@@ -67,7 +67,7 @@ class PostFormFields extends Job implements SelfHandling
 
         return array_merge(
             $fields,
-            ['allTags' => Tag::lists('tag')->all()]
+            ['allTags' => Tag::pluck('tag')->all()]
         );
     }
 
@@ -89,7 +89,7 @@ class PostFormFields extends Job implements SelfHandling
             $fields[$field] = $post->{$field};
         }
 
-        $fields['tags'] = $post->tags()->lists('tag')->all();
+        $fields['tags'] = $post->tags()->pluck('tag')->all();
 
         return $fields;
     }

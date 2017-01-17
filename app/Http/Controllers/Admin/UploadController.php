@@ -42,10 +42,10 @@ class UploadController extends Controller
         if ($result === true) {
             return redirect()
                 ->back()
-                ->withSuccess("Folder '$new_folder' created.");
+                ->withSuccess("文件夹 '$new_folder' 已创建.");
         }
 
-        $error = $result ? : "An error occurred creating directory.";
+        $error = $result ? : "创建目录出错.";
         return redirect()
             ->back()
             ->withErrors([$error]);
@@ -64,10 +64,10 @@ class UploadController extends Controller
         if ($result === true) {
             return redirect()
                 ->back()
-                ->withSuccess("File '$del_file' deleted.");
+                ->withSuccess("文件 '$del_file' 已删除.");
         }
 
-        $error = $result ? : "An error occurred deleting file.";
+        $error = $result ? : "删除文件出错.";
         return redirect()
             ->back()
             ->withErrors([$error]);
@@ -86,10 +86,10 @@ class UploadController extends Controller
         if ($result === true) {
             return redirect()
                 ->back()
-                ->withSuccess("Folder '$del_folder' deleted.");
+                ->withSuccess("文件夹 '$del_folder' 已删除.");
         }
 
-        $error = $result ? : "An error occurred deleting directory.";
+        $error = $result ? : "目录删除出错.";
         return redirect()
             ->back()
             ->withErrors([$error]);
@@ -111,10 +111,10 @@ class UploadController extends Controller
         if ($result === true) {
             return redirect()
                 ->back()
-                ->withSuccess("File '$fileName' uploaded.");
+                ->withSuccess("文件 '$fileName' 已上传.");
         }
 
-        $error = $result ? : "An error occurred uploading file.";
+        $error = $result ? : "删除文件出错.";
         return redirect()
             ->back()
             ->withErrors([$error]);

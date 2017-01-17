@@ -41,7 +41,7 @@ class PostController extends Controller
         $post->syncTags($request->get('tags', []));
 
         return redirect()
-            ->route('admin.post.index')
+            ->route('post.index')
             ->withSuccess('New Post Successfully Created.');
     }
 
@@ -78,7 +78,7 @@ class PostController extends Controller
         }
 
         return redirect()
-            ->route('admin.post.index')
+            ->route('post.index')
             ->withSuccess('Post saved.');
     }
 
@@ -95,7 +95,7 @@ class PostController extends Controller
         $post->delete();
 
         return redirect()
-            ->route('admin.post.index')
+            ->route('post.index')
             ->withSuccess('Post deleted.');
     }
 }

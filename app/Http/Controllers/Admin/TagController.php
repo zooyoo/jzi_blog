@@ -58,7 +58,7 @@ class TagController extends Controller
         $tag->save();
 
         return redirect('/admin/tag')
-            ->withSuccess("The tag '$tag->tag' was created.");
+            ->withSuccess("标签 '$tag->tag' 已创建.");
     }
 
     /**
@@ -95,7 +95,7 @@ class TagController extends Controller
         $tag->save();
 
         return redirect("/admin/tag/$id/edit")
-            ->withSuccess("Changes saved.");
+            ->withSuccess("修改已保存.");
     }
 
     /**
@@ -110,6 +110,6 @@ class TagController extends Controller
         $tag->delete();
 
         return redirect('/admin/tag')
-            ->withSuccess("The '$tag->tag' tag has been deleted.");
+            ->withSuccess("标签 '$tag->tag' 已删除.");
     }
 }

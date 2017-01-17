@@ -2,7 +2,7 @@
     <li><a href="/">博客主页</a></li>
     @if (Auth::check())
         <li @if (Request::is('admin/post*')) class="active" @endif>
-            <a href="/admin/post">提交</a>
+            <a href="/admin/post">文章</a>
         </li>
         <li @if (Request::is('admin/tag*')) class="active" @endif>
             <a href="/admin/tag">标签</a>

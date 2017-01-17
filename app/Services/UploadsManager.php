@@ -71,7 +71,7 @@ class UploadsManager
     protected function breadcrumbs($folder)
     {
         $folder = trim($folder, '/');
-        $crumbs = ['/' => 'root'];
+        $crumbs = ['/' => '根目录'];
 
         if (empty($folder)) {
             return $crumbs;
@@ -115,7 +115,7 @@ class UploadsManager
     }
 
     /**
-     * Return the mime type
+     * 返回文件MIME类型
      */
     public function fileMimeType($path)
     {
@@ -125,7 +125,7 @@ class UploadsManager
     }
 
     /**
-     * Return the file size
+     * 返回文件大小
      */
     public function fileSize($path)
     {
@@ -150,7 +150,7 @@ class UploadsManager
         $folder = $this->cleanFolder($folder);
 
         if ($this->disk->exists($folder)) {
-            return "Folder '$folder' aleady exists.";
+            return "文件夹 '$folder' 已存在.";
         }
 
         return $this->disk->makeDirectory($folder);
@@ -168,7 +168,7 @@ class UploadsManager
             $this->disk->files($folder)
         );
         if (! empty($filesFolders)) {
-            return "Directory must be empty to delete it.";
+            return "删除目录必须是空的.";
         }
 
         return $this->disk->deleteDirectory($folder);
@@ -182,7 +182,7 @@ class UploadsManager
         $path = $this->cleanFolder($path);
 
         if (! $this->disk->exists($path)) {
-            return "File does not exist.";
+            return "文件不存在.";
         }
 
         return $this->disk->delete($path);
@@ -196,7 +196,7 @@ class UploadsManager
         $path = $this->cleanFolder($path);
 
         if ($this->disk->exists($path)) {
-            return "File already exists.";
+            return "文件已存在.";
         }
 
         return $this->disk->put($path, $content);

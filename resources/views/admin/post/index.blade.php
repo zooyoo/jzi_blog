@@ -8,7 +8,7 @@
             </div>
             <div class="col-md-6 text-right">
                 <a href="/admin/post/create" class="btn btn-success btn-md">
-                    <i class="fa fa-plus-circle"></i> 新增文章
+                    <i class="fa fa-plus-circle"></i> 发布文章
                 </a>
             </div>
         </div>
@@ -22,7 +22,7 @@
                 <table id="posts-table" class="table table-striped table-bordered">
                     <thead>
                     <tr>
-                        <th>更新时间</th>
+                        <th>发布时间</th>
                         <th>标题</th>
                         <th>副标题</th>
                         <th data-sortable="false">操作</th>

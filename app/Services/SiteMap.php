@@ -60,9 +60,9 @@ class SiteMap
      */
     protected function getPostsInfo()
     {
-        return Post::where('published_at', '<=', Carbon::now())
+        return Post::where('updated_at', '<=', Carbon::now())
             ->where('is_draft', 0)
-            ->orderBy('published_at', 'desc')
+            ->orderBy('updated_at', 'desc')
             ->lists('updated_at', 'slug')
             ->all();
     }

@@ -7,7 +7,7 @@ use App\Tag;
 use Carbon\Carbon;
 use Illuminate\Contracts\Bus\SelfHandling;
 
-class BlogIndexData extends Job implements SelfHandling
+class BlogIndexData extends Job //implements SelfHandling
 {
     protected $tag;
 
@@ -43,9 +43,9 @@ class BlogIndexData extends Job implements SelfHandling
     protected function normalIndexData()
     {
         $posts = Post::with('tags')
-            ->where('published_at', '<=', Carbon::now())
+            ->where('updated_at', '<=', Carbon::now())
             ->where('is_draft', 0)
-            ->orderBy('published_at', 'desc')
+            ->orderBy('updated_at', 'desc')
             ->simplePaginate(config('blog.posts_per_page'));
 
         return [
@@ -70,12 +70,12 @@ class BlogIndexData extends Job implements SelfHandling
         $tag = Tag::where('tag', $tag)->firstOrFail();
         $reverse_direction = (bool)$tag->reverse_direction;
 
-        $posts = Post::where('published_at', '<=', Carbon::now())
+        $posts = Post::where('updated_at', '<=', Carbon::now())
             ->whereHas('tags', function ($q) use ($tag) {
                 $q->where('tag', '=', $tag->tag);
             })
             ->where('is_draft', 0)
-            ->orderBy('published_at', $reverse_direction ? 'asc' : 'desc')
+            ->orderBy('updated_at', $reverse_direction ? 'asc' : 'desc')
             ->simplePaginate(config('blog.posts_per_page'));
         $posts->addQuery('tag', $tag->tag);
 

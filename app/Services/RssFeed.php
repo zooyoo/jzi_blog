@@ -45,9 +45,9 @@ class RssFeed
             ->lastBuildDate($now->timestamp)
             ->appendTo($feed);
 
-        $posts = Post::where('published_at', '<=', $now)
+        $posts = Post::where('updated_at', '<=', $now)
             ->where('is_draft', 0)
-            ->orderBy('published_at', 'desc')
+            ->orderBy('updated_at', 'desc')
             ->take(config('blog.rss_size'))
             ->get();
         foreach ($posts as $post) {

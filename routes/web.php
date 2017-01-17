@@ -66,7 +66,7 @@ Route::get('/', function () {
     return redirect('/blog');
 });
 
-Auth::routes();
+//Auth::routes();
 
 Route::get('blog', 'BlogController@index');
 Route::get('blog/{slug}', 'BlogController@showPost');
@@ -79,9 +79,14 @@ Route::get('admin', function(){
 });
 
 Route::group(['namespace' => 'Admin', 'middleware' => 'auth'], function (){
-    Route::resource('admin/post', 'PostController');
-    Route::resource('admin/tag', 'TagController');
+    Route::resource('admin/post', 'PostController', ['except' => 'show']);
+    Route::resource('admin/tag', 'TagController', ['except' => 'show']);
+
     Route::get('admin/upload', 'UploadController@index');
+    Route::post('admin/upload/file', 'UploadController@uploadFile');
+    Route::delete('admin/upload/file', 'UploadController@deleteFile');
+    Route::post('admin/upload/folder', 'UploadController@createFolder');
+    Route::delete('admin/upload/folder', 'UploadController@deleteFolder');
 });
 
 
