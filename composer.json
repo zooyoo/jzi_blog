@@ -21,7 +21,8 @@
         "mpociot/laravel-apidoc-generator": "^1.7",
         "dflydev/apache-mime-types": "^1.0",
         "michelf/php-markdown": "^1.7",
-        "michelf/php-smartypants": "^1.8"
+        "michelf/php-smartypants": "^1.8",
+        "suin/php-rss-writer": "^1.5"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

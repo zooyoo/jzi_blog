@@ -3,6 +3,9 @@ namespace App;
 use App\Services\Markdowner;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+
+
+
 class Post extends Model
 {
     protected $dates = ['updated_at'];

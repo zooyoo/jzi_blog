@@ -28,12 +28,12 @@ class ContactController extends Controller
         $data['messageLines'] = explode("\n", $request->get('message'));
 
         Mail::queue('emails.contact', $data, function ($message) use ($data) {
-            $message->subject('Blog Contact Form: '.$data['name'])
+            $message->subject('JZi博客联系人邮件: '.$data['name'])
                 ->to(config('blog.contact_email'))
                 ->replyTo($data['email']);
         });
 
         return back()
-            ->withSuccess("Thank you for your message. It has been sent.");
+            ->withSuccess("感谢您的邮件.邮件已发送");
     }
 }

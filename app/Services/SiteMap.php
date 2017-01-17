@@ -31,7 +31,7 @@ class SiteMap
         $dates = array_values($postsInfo);
         sort($dates);
         $lastmod = last($dates);
-        $url = trim(url(), '/') . '/';
+        $url = trim(url('/'), '/') . '/';
 
         $xml = [];
         $xml[] = '<?xml version="1.0" encoding="UTF-8"?'.'>';
@@ -63,7 +63,7 @@ class SiteMap
         return Post::where('updated_at', '<=', Carbon::now())
             ->where('is_draft', 0)
             ->orderBy('updated_at', 'desc')
-            ->lists('updated_at', 'slug')
+            ->pluck('updated_at', 'slug')
             ->all();
     }
 }

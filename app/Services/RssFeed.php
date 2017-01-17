@@ -39,7 +39,7 @@ class RssFeed
         $channel
             ->title(config('blog.title'))
             ->description(config('blog.description'))
-            ->url(url())
+            ->url(url('/'))
             ->language('en')
             ->copyright('Copyright (c) '.config('blog.author'))
             ->lastBuildDate($now->timestamp)
@@ -56,7 +56,7 @@ class RssFeed
                 ->title($post->title)
                 ->description($post->subtitle)
                 ->url($post->url())
-                ->pubDate($post->published_at->timestamp)
+                ->pubDate($post->updated_at->timestamp)
                 ->guid($post->url(), true)
                 ->appendTo($channel);
         }
