@@ -110,7 +110,8 @@ Route::delete('/tasks/{task}', 'TaskController@destroy');
 
 
 
-
+//爬虫
+Route::get('/crawler/bclc', 'Crawler\BclcController@index');
 
 
 

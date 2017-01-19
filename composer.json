@@ -22,7 +22,8 @@
         "dflydev/apache-mime-types": "^1.0",
         "michelf/php-markdown": "^1.7",
         "michelf/php-smartypants": "^1.8",
-        "suin/php-rss-writer": "^1.5"
+        "suin/php-rss-writer": "^1.5",
+        "hassankhan/config": "^0.10.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
