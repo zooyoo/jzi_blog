@@ -11,42 +11,26 @@ class BclcController extends Controller
 {
 
     protected $curlKernel;
+    protected $conf;
 
     public function __construct(CurlKernel $curlKernel)
     {
         $this->curlKernel = $curlKernel;
+        $this->conf = $this->readUpdateConfig(base_path('crawlerConfig/bclc.json'));
     }
 
     public function index(Request $request)
     {
-        $configFilePath = base_path('crawlerConfig/bclc.json');
-
-        $conf = $this->readUpdateConfig($configFilePath);
-//        var_dump($urlParamNewVal);
-//        var_dump($WT_FPC_lv_NewVal);
-//        var_dump($WT_FPC_ss_NewVal);
-//        print_r($conf->all());
-        //print_r($conf->get('curlParaArr'))
-        $curlResult = $this->curlKernel->doCurl($conf->get('curlParaArr'));
-
-        $time = $curlResult[1]['total_time'];
-        $error = $curlResult[2];
-
-        preg_match($conf->get('preg_drawNbr'), $curlResult[0], $drawNbrArr);
-        preg_match($conf->get('preg_drawDate'), $curlResult[0], $drawDateArr);
-        preg_match($conf->get('preg_drawTime'), $curlResult[0], $drawTimeArr);
-        preg_match($conf->get('preg_nums'), $curlResult[0], $numArr);
-        preg_match($conf->get('preg_Bonus'), $curlResult[0], $bonusArr);
-
-        //var_dump($content);
+        $curlResult = $this->curlKernel->doCurl($this->conf->get('curlParaArr'));
+        $parseResult = $this->doParse($curlResult);
 
         return view('crawler.index',[
-            'time' => $time,
-            'drawNbr' => $drawNbrArr[1],
-            'drawDateTime' => date('Y-m-d H:i:s',strtotime($drawDateArr[1] . $drawTimeArr[1])),
-            'num' => $numArr[1],
-            'bonus' => $bonusArr[1] . 'X',
-            'error' => $error
+            'time' => $curlResult['info']['total_time'],
+            'drawNbr' => $parseResult['drawNbr'][1],
+            'drawDateTime' => date('Y-m-d H:i:s',strtotime($parseResult['drawDate'][1] . $parseResult['drawTime'][1])),
+            'num' => $parseResult['nums'][1],
+            'bonus' => $parseResult['Bonus'][1] . 'X',
+            'error' => $curlResult['err']
         ]);
     }
 
@@ -78,6 +62,30 @@ class BclcController extends Controller
         file_put_contents($configFilePath, $json_string);
 
         return $conf;
+    }
+
+    /*
+     * 解析
+     */
+    private function doParse($src){
+        $pregs = $this->conf->get('preg');
+        $parseResult = $pregs;
+
+        foreach ($pregs as $preg){
+            preg_match($preg, $src['curlResult'], $parseResult[key($pregs)]);
+            next($pregs);
+        }
+
+        return $parseResult;
+        /*        print_r($pregs);
+                echo '<br>';
+                print_r($parseResult);
+
+                preg_match($this->conf-->get('preg.drawNbr'), $src[0], $drawNbrArr);
+                preg_match($this->conf-->get('preg.drawDate'), $src[0], $drawDateArr);
+                preg_match($this->conf-->get('preg.drawTime'), $src[0], $drawTimeArr);
+                preg_match($this->conf-->get('preg.nums'), $src[0], $numArr);
+                preg_match($this->conf-->get('preg.Bonus'), $src[0], $bonusArr);*/
     }
 
 }

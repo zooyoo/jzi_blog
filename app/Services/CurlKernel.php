@@ -43,6 +43,10 @@ class CurlKernel
         $err = curl_error($ch);
         curl_close($ch);
 
-        return array($result,$info,$err);
+        return [
+            "curlResult" => $result,
+            "info" => $info,
+            "err" => $err
+        ];
     }
 }

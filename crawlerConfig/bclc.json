@@ -1,1 +1,32 @@
-{"curlParaArr":{"url":"http:\/\/lotto.bclc.com\/services2\/keno\/draw\/latest\/today?_=1484807154374","cookie_arr":{"WT_FPC":"id=231128b40598241cda91484592717676:lv=1484749517608:ss=1484749517611","__unam":"9a393fa-159ac0e0e9a-faf31b1-57","_ga":"GA1.2.1937348640.1484650316","_gat_UA-64195823-1":"1","_gat_bclcProperty":"1"},"cookie_key":"_gat_bclcProperty","useragent":"Mozilla\/5.0 (Windows NT 10.0; WOW64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/50.0.2661.102 Safari\/537.36","timeout":"100"},"base":{"urlMain":"http:\/\/lotto.bclc.com\/services2\/keno\/draw\/latest\/today","urlParamVal":"1484807154374","cookie_arr":{"WT_FPC_id_val":"id=231128b40598241cda91484592717676","WT_FPC_lv_val":"1484749517608","WT_FPC_ss_val":"1484749517611"},"addVal":"12345"},"preg_nums":"\/\\[([\\d,]+?)\\]\/","preg_drawDate":"\/\"drawDate\":\"([\\w\\s,]+?)\",\/","preg_drawTime":"\/\"drawTime\":\"([\\w\\s:]+?)\",\/","preg_drawNbr":"\/{\"drawNbr\":(\\d+?),\/","preg_Bonus":"\/\"drawBonus\":([\\d.]+?)},\/"}
+{
+  "curlParaArr": {
+    "url": "http:\/\/lotto.bclc.com\/services2\/keno\/draw\/latest\/today?_=1484807462999",
+    "cookie_arr": {
+      "WT_FPC": "id=231128b40598241cda91484592717676:lv=1484749826233:ss=1484749826236",
+      "__unam": "9a393fa-159ac0e0e9a-faf31b1-57",
+      "_ga": "GA1.2.1937348640.1484650316",
+      "_gat_UA-64195823-1": "1",
+      "_gat_bclcProperty": "1"
+    },
+    "cookie_key": "_gat_bclcProperty",
+    "useragent": "Mozilla\/5.0 (Windows NT 10.0; WOW64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/50.0.2661.102 Safari\/537.36",
+    "timeout": "100"
+  },
+  "base": {
+    "urlMain": "http:\/\/lotto.bclc.com\/services2\/keno\/draw\/latest\/today",
+    "urlParamVal": "1484807462999",
+    "cookie_arr": {
+      "WT_FPC_id_val": "id=231128b40598241cda91484592717676",
+      "WT_FPC_lv_val": "1484749826233",
+      "WT_FPC_ss_val": "1484749826236"
+    },
+    "addVal": "12345"
+  },
+  "preg": {
+    "drawDate": "\/\"drawDate\":\"([\\w\\s,]+?)\",\/",
+    "drawTime": "\/\"drawTime\":\"([\\w\\s:]+?)\",\/",
+    "drawNbr": "\/{\"drawNbr\":(\\d+?),\/",
+    "nums": "\/\\[([\\d,]+?)\\]\/",
+    "Bonus": "\/\"drawBonus\":([\\d.]+?)},\/"
+  }
+}
