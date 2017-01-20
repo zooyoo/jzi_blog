@@ -29,7 +29,7 @@
                     <a href="/admin">后台管理</a>
                 </li>
                 <li>
-                    <a href="/crawler/bclc">JZi爬虫</a>
+                    <a href="/crawler/bclc">工具</a>
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">

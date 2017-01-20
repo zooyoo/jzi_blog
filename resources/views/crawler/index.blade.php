@@ -6,7 +6,7 @@
 </head>
 <body>
 
-    <b>耗时： </b> <span style="color: #0000ff;"> {{ $time }} </span>
+    <b>耗时： </b> <span style="color: #0000ff;"> {{ $curlTime }} </span>
     <br>
 
     <b>期号： </b> <span style="color: #0000ff;"> {{ $drawNbr }} </span>
@@ -15,7 +15,7 @@
     <b>开奖时间： </b> <span style="color: #0000ff;"> {{ $drawDateTime }} </span>
     <br>
 
-    <b>开奖号： </b> <span style="color: #0000ff;"> {{ $num }} </span>
+    <b>开奖号： </b> <span style="color: #0000ff;"> {{ $nums }} </span>
     <br>
 
     <b>奖金倍数： </b> <span style="color: #0000ff;"> {{ $bonus }} </span>
