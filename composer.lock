@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "45517c81871ea0bc8ab5ba345462577d",
+    "content-hash": "59926778f3dc2aa3f268162830a3a8e2",
     "packages": [
         {
             "name": "arcanedev/log-viewer",
@@ -3754,6 +3754,92 @@
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
             "time": "2017-01-03T13:51:32+00:00"
+        },
+        {
+            "name": "tonyhhyip/laravel-sse",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tonyhhyip/laravel-sse.git",
+                "reference": "a6389f50eb027bb2302527d889b73e4d9a691f69"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://packagist.phpcomposer.com/files/tonyhhyip/laravel-sse/a6389f50eb027bb2302527d889b73e4d9a691f69.zip",
+                "reference": "a6389f50eb027bb2302527d889b73e4d9a691f69",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "~5.1",
+                "php": ">=5.5.9",
+                "tonyhhyip/sse": "~2.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Sse\\Laravel\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "time": "2016-08-18T03:22:31+00:00"
+        },
+        {
+            "name": "tonyhhyip/sse",
+            "version": "2.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tonyhhyip/libSSE-php.git",
+                "reference": "6ca3eb2c312c8a16502f1c9436a9fc26e6c84645"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://packagist.phpcomposer.com/files/tonyhhyip/libSSE-php/6ca3eb2c312c8a16502f1c9436a9fc26e6c84645.zip",
+                "reference": "6ca3eb2c312c8a16502f1c9436a9fc26e6c84645",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.9",
+                "symfony/http-foundation": "~2.7 | ~3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.2 | ~5.0"
+            },
+            "suggest": {
+                "predis/predis": "For using RedisMechnism"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Sse\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Licson Lee",
+                    "email": "licson0729@gmail.com",
+                    "homepage": "https://licson.net/",
+                    "role": "Owner"
+                },
+                {
+                    "name": "Tony Yip",
+                    "email": "tony@opensource.hk",
+                    "homepage": "https://github.com/tonyhhyip",
+                    "role": "Developer"
+                }
+            ],
+            "description": "An easy-to-use, object-orienlated library for Server-Sent Events",
+            "homepage": "https://github.com/licson0729/libSSE-php",
+            "keywords": [
+                "sse"
+            ],
+            "time": "2016-11-22T15:02:22+00:00"
         },
         {
             "name": "tymon/jwt-auth",

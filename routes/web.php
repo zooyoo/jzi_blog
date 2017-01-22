@@ -112,10 +112,8 @@ Route::delete('/tasks/{task}', 'TaskController@destroy');
 //爬虫
 Route::group(['namespace' => 'Crawler', 'middleware' => 'auth'], function (){
     Route::get('crawler/bclc', 'BclcController@index');
+    Route::get('crawler/bclcInfo', 'BclcController@bclcInfo');
 });
-
-
-
 
 
 
