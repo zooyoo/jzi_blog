@@ -6,57 +6,53 @@
  * Time: 10:53
  */
 
+
 use Noodlehaus\Config;
-
-class CurlKernel
-{
-    private function genCookie($curlParaArr) {
-        $cookie = '';
-
-        foreach ($curlParaArr['cookie_arr'] as $key => $value) {
-            if($key != $curlParaArr['cookie_key'])
-                $cookie .= $key . '=' . $value . ';';
-            else
-                $cookie .= $key . '=' . $value;
-        }
-
-        return $cookie;
-    }
-
-    public function doCurl($curlParaArr)
-    {
-        $ch = curl_init();
-
-        /*      $proxy = '127.0.0.1';
-                $proxyport = '8087';
-                curl_setopt ($ch, CURLOPT_PROXY, $proxy);
-                curl_setopt ($ch, CURLOPT_PROXYPORT, $proxyport);*/
-
-        curl_setopt($ch, CURLOPT_URL, $curlParaArr['url']);
-
-        curl_setopt($ch, CURLOPT_HEADER, 0);
-        curl_setopt($ch, CURLOPT_COOKIE, $this->genCookie($curlParaArr));
-        curl_setopt($ch, CURLOPT_USERAGENT, $curlParaArr['useragent']);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_FRESH_CONNECT, 1);
-        //curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-        curl_setopt($ch, CURLOPT_TIMEOUT, $curlParaArr['timeout']);
-
-        $result = curl_exec($ch);
-        $info = curl_getinfo($ch);
-        $err = curl_error($ch);
-        curl_close($ch);
-
-        return [
-            "curlResult" => $result,
-            "info" => $info,
-            "err" => $err
-        ];
-    }
-}
+use Carbon\Carbon;
 
 
+$configPath = base_path('crawlerConfig/bclc.json');
+$crawler = new Crawler($configPath);
+$crawlerResult = $crawler->do();
 
+//exit;
+?>
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <title>JZiCrawler</title>
+        <meta http-equiv="pragma" content="no-cache">
+        <meta http-equiv="cache-control" content="no-cache">
+        <meta http-equiv="expires" content="0">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <script src="http://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js"></script>
+    </head>
+    <body>
+
+    <b>耗时： </b> <span style="color: #0000ff;">  <?php echo $crawlerResult['curlTime'] ?> </span>
+    <br>
+
+    <b>期号： </b> <span style="color: #0000ff;"> <?php echo $crawlerResult['drawNbr'] ?> </span>
+    <br>
+
+    <b>开奖时间： </b> <span style="color: #0000ff;"> <?php echo $crawlerResult['drawDateTime'] ?> </span>
+    <br>
+
+    <b>开奖号： </b> <span style="color: #0000ff;"> <?php echo $crawlerResult['nums'] ?> </span>
+    <br>
+
+    <b>奖金倍数： </b> <span style="color: #0000ff;"> <?php echo $crawlerResult['bonus'] ?> </span>
+    <br>
+
+    <b>错误： </b> <span style="color: #0000ff;"> <?php echo $crawlerResult['error'] ?> </span>
+
+    </body>
+    </html>
+
+<?php exit; ?>
+
+<?PHP
 class Crawler
 {
     protected $curlKernel;
@@ -68,10 +64,10 @@ class Crawler
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($configPath)
     {
         $this->curlKernel = new CurlKernel();
-        $this->configFilePath = base_path('crawlerConfig/bclc.json');
+        $this->configFilePath = $configPath;
         $this->conf = $this->readUpdateConfig($this->configFilePath);
     }
 
@@ -106,9 +102,6 @@ class Crawler
         $bclc->save();
     }
 
-    /*
-     * 重复判断
-     */
     private function IsNewData($parseResult){
         $drawNbr = $parseResult['drawNbr'];
         if ($drawNbr == $this->conf->get('draoNbrCache')){
@@ -121,13 +114,10 @@ class Crawler
         }
     }
 
-    /*
-     *读取并更新配置
-     */
     private function readUpdateConfig($configFilePath){
         $conf = Config::load($configFilePath);
 
-        $addVal = $conf->get('base.addVal');
+        $addVal = $conf->get('base.urlParamVal');
 
         $urlParamNewVal = $conf->get('base.urlParamVal') + $addVal;
         $url = $conf->get('base.urlMain') . '?_=' . $urlParamNewVal;
@@ -148,9 +138,6 @@ class Crawler
         return $conf;
     }
 
-    /*
-     * 解析
-     */
     private function doParse($curlResult){
         $pregs = $this->conf->get('preg');
         $pregResult = $pregs;
@@ -202,5 +189,52 @@ class Crawler
                 preg_match($this->conf-->get('preg.drawTime'), $src[0], $drawTimeArr);
                 preg_match($this->conf-->get('preg.nums'), $src[0], $numArr);
                 preg_match($this->conf-->get('preg.Bonus'), $src[0], $bonusArr);*/
+    }
+}
+
+class CurlKernel
+{
+    private function genCookie($curlParaArr) {
+        $cookie = '';
+
+        foreach ($curlParaArr['cookie_arr'] as $key => $value) {
+            if($key != $curlParaArr['cookie_key'])
+                $cookie .= $key . '=' . $value . ';';
+            else
+                $cookie .= $key . '=' . $value;
+        }
+
+        return $cookie;
+    }
+
+    public function doCurl($curlParaArr)
+    {
+        $ch = curl_init();
+
+        /*      $proxy = '127.0.0.1';
+                $proxyport = '8087';
+                curl_setopt ($ch, CURLOPT_PROXY, $proxy);
+                curl_setopt ($ch, CURLOPT_PROXYPORT, $proxyport);*/
+
+        curl_setopt($ch, CURLOPT_URL, $curlParaArr['url']);
+
+        curl_setopt($ch, CURLOPT_HEADER, 0);
+        curl_setopt($ch, CURLOPT_COOKIE, $this->genCookie($curlParaArr));
+        curl_setopt($ch, CURLOPT_USERAGENT, $curlParaArr['useragent']);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_FRESH_CONNECT, 1);
+        //curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+        curl_setopt($ch, CURLOPT_TIMEOUT, $curlParaArr['timeout']);
+
+        $result = curl_exec($ch);
+        $info = curl_getinfo($ch);
+        $err = curl_error($ch);
+        curl_close($ch);
+
+        return [
+            "curlResult" => $result,
+            "info" => $info,
+            "err" => $err
+        ];
     }
 }

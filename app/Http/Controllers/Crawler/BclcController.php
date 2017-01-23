@@ -52,11 +52,16 @@ class BclcController extends Controller
     {
         //$this->dispatch(new CrawlerJobBclc());
 
-        return view('crawler.index');
+        return view('crawler.show');
     }
 
     public function bclcInfo(){
-        return view('crawler.bclcInfo');
+        //return view('crawler.bclcInfo');
+    }
+
+    public function bclcsingle(){
+        //echo  '112233';
+        return view('crawler.bclcsingle');
     }
 
 }
